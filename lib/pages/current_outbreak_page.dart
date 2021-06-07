@@ -1,28 +1,28 @@
 import "package:flutter/material.dart";
-import "package:intl/intl.dart";
+import "package:intl/intl.dart" show DateFormat;
 
-import "../models/report.dart";
-import "../services/reports.dart";
-import "../widgets/lineHistoryChart.dart";
-import "../widgets/reportCard.dart";
+import "../models/report.dart" show Cases, History;
+import "../services/reports.dart" show getCases, getCountries, getHistory;
+import "../widgets/line_history_chart.dart" show LineHistoryChart;
+import "../widgets/report_card.dart" show ReportCard;
 
 enum TabsEnum { Daily, Weekly, Monthly }
 
-class CurrentOutbreak extends StatefulWidget {
-  CurrentOutbreak({Key key}) : super(key: key);
+class CurrentOutbreakPage extends StatefulWidget {
+  CurrentOutbreakPage({Key key}) : super(key: key);
 
   @override
-  _CurrentOutbreakState createState() => _CurrentOutbreakState();
+  _CurrentOutbreakPageState createState() => _CurrentOutbreakPageState();
 }
 
-class _CurrentOutbreakState extends State<CurrentOutbreak> {
+class _CurrentOutbreakPageState extends State<CurrentOutbreakPage> {
   String selectedCoutry = "Brazil";
   String formattedDate = "";
   bool isBusy = false;
   TabsEnum tabSelected = TabsEnum.Daily;
 
   final now = DateTime.now();
-  Report report = Report.fromJson({});
+  Cases cases = Cases.fromJson({});
   History history = History.fromJson({});
 
   List<String> countries = [];
@@ -145,9 +145,9 @@ class _CurrentOutbreakState extends State<CurrentOutbreak> {
       isBusy = true;
     });
 
-    getReport(country: coutry).then((response) {
+    getCases(country: coutry).then((response) {
       setState(() {
-        report = response;
+        cases = response;
       });
     });
 
@@ -280,13 +280,13 @@ class _CurrentOutbreakState extends State<CurrentOutbreak> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Last updated ${formatDateTime(report?.updated)}",
+                                "Last updated ${formatDateTime(cases?.updated)}",
                                 style: TextStyle(
                                   color: Colors.grey[400],
                                 ),
                               ),
                               TextButton(
-                                onPressed: () => goTo("/CovidDetails"),
+                                onPressed: () => goTo("/covid_details_page"),
                                 child: const Text("Details"),
                               ),
                             ],
@@ -295,20 +295,20 @@ class _CurrentOutbreakState extends State<CurrentOutbreak> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               ReportCard(
-                                label: "Infectados",
-                                value: report?.confirmed ?? 0,
+                                label: "Confirmed",
+                                value: cases?.confirmed ?? 0,
                                 color: Colors.amberAccent,
                                 icon: Icons.add,
                               ),
                               ReportCard(
-                                label: "Recuperados",
-                                value: report?.recovered ?? 0,
+                                label: "Recovered",
+                                value: cases?.recovered ?? 0,
                                 color: Colors.greenAccent,
                                 icon: Icons.favorite,
                               ),
                               ReportCard(
-                                label: "Mortos",
-                                value: report?.deaths ?? 0,
+                                label: "Deaths",
+                                value: cases?.deaths ?? 0,
                                 color: Colors.redAccent,
                                 icon: Icons.close,
                               ),

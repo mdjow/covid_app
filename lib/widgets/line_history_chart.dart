@@ -1,6 +1,21 @@
-import 'package:covid_app/utils/format.dart';
 import "package:flutter/material.dart";
-import "package:fl_chart/fl_chart.dart";
+import "package:fl_chart/fl_chart.dart"
+    show
+        BarAreaData,
+        FlBorderData,
+        FlDotData,
+        FlGridData,
+        FlSpot,
+        FlTitlesData,
+        LineBarSpot,
+        LineChart,
+        LineChartBarData,
+        LineChartData,
+        LineTooltipItem,
+        LineTouchData,
+        LineTouchTooltipData;
+
+import "package:covid_app/utils/format.dart" show numberFormat;
 
 class LineHistoryChart extends StatelessWidget {
   final List<Color> gradientColors = [

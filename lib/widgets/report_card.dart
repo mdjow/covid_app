@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import "../utils/format.dart";
+import "../utils/format.dart" show numberFormat;
 
 class ReportCard extends StatelessWidget {
   final String label;

@@ -1,6 +1,6 @@
-import "package:intl/intl.dart";
+import "package:intl/intl.dart" show NumberFormat;
 
 String numberFormat(int val) {
-  NumberFormat formatter = new NumberFormat("##,###", "pt_BR");
+  NumberFormat formatter = NumberFormat("##,###", "pt_BR");
   return formatter.format(val);
 }

@@ -1,4 +1,4 @@
-class Report {
+class Cases {
   int confirmed;
   int recovered;
   int deaths;
@@ -15,7 +15,7 @@ class Report {
   String long;
   String updated;
 
-  Report({
+  Cases({
     this.confirmed,
     this.recovered,
     this.deaths,
@@ -33,7 +33,7 @@ class Report {
     this.updated,
   });
 
-  Report.fromJson(Map<String, dynamic> json) {
+  Cases.fromJson(Map<String, dynamic> json) {
     confirmed = json["confirmed"] ?? 0;
     recovered = json["recovered"] ?? 0;
     deaths = json["deaths"] ?? 0;
@@ -52,7 +52,7 @@ class Report {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
 
     data["confirmed"] = this.confirmed;
     data["recovered"] = this.recovered;
@@ -86,17 +86,18 @@ class History {
   String capitalCity;
   Map<String, int> dates;
 
-  History(
-      {this.country,
-      this.population,
-      this.sqKmArea,
-      this.lifeExpectancy,
-      this.continent,
-      this.abbreviation,
-      this.location,
-      this.iso,
-      this.capitalCity,
-      this.dates});
+  History({
+    this.country,
+    this.population,
+    this.sqKmArea,
+    this.lifeExpectancy,
+    this.continent,
+    this.abbreviation,
+    this.location,
+    this.iso,
+    this.capitalCity,
+    this.dates,
+  });
 
   History.fromJson(Map<String, dynamic> json) {
     country = json["country"] ?? "";

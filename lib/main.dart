@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
-import "package:google_fonts/google_fonts.dart";
+import "package:google_fonts/google_fonts.dart" show GoogleFonts;
 
-import "pages/CovidDetails.dart";
-import "pages/CurrentOutbreak.dart";
+import "pages/covid_details_page.dart" show CovidDetailsPage;
+import "pages/current_outbreak_page.dart" show CurrentOutbreakPage;
 
 void main() {
   runApp(CovidApp());
@@ -26,10 +26,10 @@ class CovidApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/CurrentOutbreak": (context) => CurrentOutbreak(),
-        "/CovidDetails": (context) => CovidDetails(),
+        "/current_outbreak_page": (context) => CurrentOutbreakPage(),
+        "/covid_details_page": (context) => CovidDetailsPage(),
       },
-      initialRoute: "/CurrentOutbreak",
+      initialRoute: "/current_outbreak_page",
     );
   }
 }

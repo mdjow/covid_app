@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-class CovidDetails extends StatelessWidget {
+class CovidDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
